@@ -6,8 +6,8 @@ https://drive.google.com/drive/folders/1rV9i_VdyIo3Ga5Tyo0BztIENJxgNuoVJ?usp=sha
 
 
 Integrantes del equipo:
-Cruz Caballero Carlos Daniel
-Díaz Díaz Eduardo Marcelino
-Roblero Pérez Elías
+Cruz Caballero Carlos Daniel,
+Díaz Díaz Eduardo Marcelino,
+Roblero Pérez Elías,
 Ruiz Pérez Hugo Eduardo
 
