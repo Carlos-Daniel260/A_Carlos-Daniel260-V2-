@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout_owner :: layout (~{::body},'home')}">
+    <body>
+
+        <div style="display:flex"><h1 style="margin:auto; margin-top: 20px; margin-bottom:20px;">Compras realizadas</h1></div>    
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>N° Compra</th>
+                                <th>Forma de pago</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="compra : ${allCompras}">
+                                <td th:text="${compra.id}"/>
+                                <td th:text="${compra.metodopago}"/>
+                                <td th:text="${compra.fecha}"/>
+                                <td>                              
+                                    <p style="float: left;">$</p><p th:text="${compra.total}"><p/>                           
+                                </td>
+                                <td>
+                                    <a th:href="@{compras/{ventaId}(ventaId=${compra.id})}"
+                                       style="color: #29B6F6;">Ver detalles</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>                                 
+            </div>       
+    </body>
+</html>

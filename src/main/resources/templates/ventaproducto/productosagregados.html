@@ -10,7 +10,7 @@ and open the template in the editor.
         <div style="display:flex"><h1 style="margin:auto; margin-top: 20px; margin-bottom:20px;">Productos agregados</h1></div>
 
         <div class="container" style="margin-bottom: 20px">
-            <div class="row text-left" style="margin-left: 5px">
+            <div class="row text-left" style="margin-left: 3px">
                 <a th:href="@{listaproductos}" class="btn btn-primary btn-sm" >Seguir agregando</a>
             </div>
         </div>
@@ -24,23 +24,19 @@ and open the template in the editor.
                                 <th>Nombre</th>
                                 <th>Cantidad</th>
                                 <th>Subtotal</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Producto 1</td>
-                                <td>3</td>
-                                <td>300</td>
-                            </tr>
-                            <tr>
-                                <td>Producto 1</td>
-                                <td>3</td>
-                                <td>300</td>
-                            </tr>
-                            <tr>
-                                <td>Producto 1</td>
-                                <td>3</td>
-                                <td>300</td>
+                            <tr th:each="carrito:${productosSeleccionados}">
+                                <td th:text="${carrito.product.name}"/>
+                                <td th:text="${carrito.cantidad}"/>
+                                <td>                              
+                                    <p style="float: left;">$</p><p th:text="${carrito.product.price * carrito.cantidad}"><p/>                           
+                                </td>
+                                <td>
+                                    <a th:href="@{quitarProductos/{carritoId}(carritoId=${carrito.id})}" class="btn btn-danger">X</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -57,14 +53,73 @@ and open the template in the editor.
                                 <div> 
                                     <strong>Total</strong>
                                 </div>
-                                <div style="margin-left: 150px">$900</div>
+                                <div style="margin-left: 110px">
+                                    <p style="float: left;">$</p><p style="float: right;" th:text="${totalCompra}"><p/>  
+                                </div>
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <div class="text-center"><a class="btn btn-success">Realizar pago</a></div>
+                            <div class="text-center">
+                                <div th:if="${hayProductos} == true">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Realizar pago</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>                           
+            </div>
+            <div class="row">
+                <form th:action="@{agregados/pago}" th:object="${venta}" method="post">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Información de pago</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div style="display: flex; margin-bottom: 30px; margin-top: 20px;">
+                                            <div> 
+                                                <strong>Cantidad de productos</strong>
+                                            </div>
+                                            <div style="margin-left: 200px;">
+                                                <p th:text="${numeroProductos}" ><p/>   
+                                            </div>                                     
+                                        </div>
+                                        <div style="display: flex; margin-bottom: 30px;">
+                                            <div> 
+                                                <strong>Total a pagar</strong>
+                                            </div>                                       
+                                            <div style="margin-left: 250px;">
+                                                <p style="float: left;">$</p><p style="float: right;" th:text="${totalCompra}"><p/>                                            
+                                            </div>                                    
+                                        </div>
+                                        <div style="display: flex; margin-bottom: 30px;">
+                                            <div> 
+                                                <strong>Método de pago</strong>
+                                            </div>                                       
+                                            <div style="margin-left: 220px;">
+                                                <select class="form-control" th:field="*{metodopago}">
+                                                    <option value="Tarjeta">Tarjeta</option>
+                                                    <option value="PayPal">Paypal</option>
+                                                    <option value="Transferencia">Transferencia</option>
+                                                </select>
+                                            </div>                                    
+                                        </div>
+                                        <select class="form-control" th:field="*{total}" style="visibility: hidden; display: inline;">
+                                            <option th:value="${totalCompra}">Tarjeta</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-success">Ejecutar compra</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

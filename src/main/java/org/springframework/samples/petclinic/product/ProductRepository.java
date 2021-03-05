@@ -23,7 +23,9 @@ public interface ProductRepository extends Repository<Product, Integer> {
     @Transactional(readOnly = true)
     Collection<Product> validateNewProduct(@Param("name") String name);
     
-    
+    @Query("SELECT product FROM Product product WHERE product.existence > 0")
+    @Transactional(readOnly = true)
+    Collection<Product> productsExistentes();
     
     @Query("SELECT product FROM Product product WHERE product.id!=:id AND product.name =:name")
     @Transactional(readOnly = true)
