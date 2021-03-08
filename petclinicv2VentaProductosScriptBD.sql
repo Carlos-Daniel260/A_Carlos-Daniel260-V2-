@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2021 a las 04:59:09
+-- Tiempo de generación: 08-03-2021 a las 22:56:40
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -370,7 +370,11 @@ INSERT INTO `citas` (`id`, `owner_id`, `fecha`, `hora`, `mascota`, `especialidad
 (313, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
 (314, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
 (315, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
-(316, 2, '2019-03-30', '22:22:00', '3', 2, '0');
+(316, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
+(317, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
+(318, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
+(319, 2, '2019-03-30', '22:22:00', '3', 2, '0'),
+(320, 2, '2019-03-30', '22:22:00', '3', 2, '0');
 
 -- --------------------------------------------------------
 
@@ -729,7 +733,11 @@ INSERT INTO `medicamento` (`id`, `ingrediente_activo`, `nombre`, `presentacion`)
 (317, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
 (318, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
 (319, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
-(320, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon');
+(320, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
+(321, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
+(322, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
+(323, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon'),
+(324, 'ingrediente aaaaactivo', 'nombreeeeee', 'presentaciooooon');
 
 -- --------------------------------------------------------
 
@@ -755,8 +763,8 @@ CREATE TABLE `owners` (
 --
 
 INSERT INTO `owners` (`id`, `first_name`, `last_name`, `address`, `city`, `telephone`, `user_id`, `latitud`, `longitud`, `imagen`) VALUES
-(2, 'Don owner', 'ownersito', 'Calle Glorioso Lodasal', 'Tuxtlas', '123456', 2, '1', '1', '/resources/images/ElsgxbnIs5'),
-(3, 'Joe unitario', 'Franklin', '110 W. Liberty St.', 'Madison', '65551023', 11, '1', '1', '/resources/images/WiVaiDvj09'),
+(2, 'Don owner', 'ownersito', 'Calle Glorioso Lodasal', 'Tuxtlas', '123456', 2, '1', '1', '/resources/images/EfPJV02pOX'),
+(3, 'Joe unitario', 'Franklin', '110 W. Liberty St.', 'Madison', '65551023', 11, '1', '1', '/resources/images/Raf4vpJ2FP'),
 (9, 'aa', 'a', 'a', 'a', '1', 18, '', '', '/resources/images/placeholder.png');
 
 -- --------------------------------------------------------
@@ -1102,7 +1110,11 @@ INSERT INTO `pets` (`id`, `name`, `birth_date`, `type_id`, `owner_id`) VALUES
 (327, 'Gratus2', '2019-02-05', 1, 2),
 (328, 'Gratus2', '2019-02-05', 1, 2),
 (329, 'Gratus2', '2019-02-05', 1, 2),
-(330, 'Gratus2', '2019-02-05', 1, 2);
+(330, 'Gratus2', '2019-02-05', 1, 2),
+(331, 'Gratus2', '2019-02-05', 1, 2),
+(332, 'Gratus2', '2019-02-05', 1, 2),
+(333, 'Gratus2', '2019-02-05', 1, 2),
+(334, 'Gratus2', '2019-02-05', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1143,11 +1155,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `existence`, `photo`) VALUES
-(1, 'prueba', 'producto de prueba', 10, 3, 'image'),
+(1, 'prueba', 'producto de prueba', 10, 0, 'image'),
 (8, 'Producto 3', 'Descripción de producto 3', 90, 4, '/resources/images/default-image.jpg'),
 (10, 'Producto 5 ', 'Descripción de producto 5', 9, 0, '/resources/images/default-image.jpg'),
-(11, 'Producto 6', 'Descripción de producto 6', 120, 22, '/resources/images/default-image.jpg'),
-(14, 'Producto 8', 'Producto 8', 56, 6, '/resources/images/default-image.jpg'),
+(11, 'Producto 6', 'Descripción de producto 6', 120, 19, '/resources/images/default-image.jpg'),
+(14, 'Producto 8', 'Producto 8', 56, 3, '/resources/images/default-image.jpg'),
 (15, 'Producto10', 'Descripcion', 100, 3, '/resources/images/default-image.jpg'),
 (16, 'Producto11', 'Descripción producto 11', 9, 0, '/resources/images/default-image.jpg');
 
@@ -2602,7 +2614,30 @@ INSERT INTO `records` (`id`, `description`, `record_date`, `type`, `user_email`)
 (1428, 'El usuario esta deshabilitado', '2021-03-03 06:34:19', 'failure', 'prueba@prueba2.com'),
 (1429, 'Usuario ingreso al sistema sin problemas', '2021-03-03 06:34:19', 'success', 'admin@admin.com'),
 (1430, 'Contraseña o usuario incorrectos', '2021-03-03 06:34:19', 'failure', 'test'),
-(1431, 'Usuario ingreso al sistema sin problemas', '2021-03-03 06:34:19', 'success', 'owner@owner.com');
+(1431, 'Usuario ingreso al sistema sin problemas', '2021-03-03 06:34:19', 'success', 'owner@owner.com'),
+(1432, 'Contraseña o usuario incorrectos', '2021-03-06 01:14:19', 'failure', '12@12'),
+(1433, 'Usuario ingreso al sistema sin problemas', '2021-03-06 01:14:34', 'success', '12@12'),
+(1434, 'Usuario ingreso al sistema sin problemas', '2021-03-06 01:26:22', 'success', '12@12'),
+(1435, 'Contraseña o usuario incorrectos', '2021-03-09 02:40:28', 'failure', 'admin@'),
+(1436, 'Usuario ingreso al sistema sin problemas', '2021-03-09 02:40:32', 'success', 'admin@admin.com'),
+(1437, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:06:52', 'success', '12@12'),
+(1438, 'El usuario esta deshabilitado', '2021-03-09 03:46:50', 'failure', 'prueba@prueba2.com'),
+(1439, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:46:51', 'success', 'admin@admin.com'),
+(1440, 'Contraseña o usuario incorrectos', '2021-03-09 03:46:52', 'failure', 'test'),
+(1441, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:46:52', 'success', 'owner@owner.com'),
+(1442, 'El usuario esta deshabilitado', '2021-03-09 03:51:14', 'failure', 'prueba@prueba2.com'),
+(1443, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:51:16', 'success', 'admin@admin.com'),
+(1444, 'Contraseña o usuario incorrectos', '2021-03-09 03:51:16', 'failure', 'test'),
+(1445, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:51:16', 'success', 'owner@owner.com'),
+(1446, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:51:46', 'success', '12@12'),
+(1447, 'El usuario esta deshabilitado', '2021-03-09 03:53:22', 'failure', 'prueba@prueba2.com'),
+(1448, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:53:23', 'success', 'admin@admin.com'),
+(1449, 'Contraseña o usuario incorrectos', '2021-03-09 03:53:23', 'failure', 'test'),
+(1450, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:53:23', 'success', 'owner@owner.com'),
+(1451, 'El usuario esta deshabilitado', '2021-03-09 03:55:00', 'failure', 'prueba@prueba2.com'),
+(1452, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:55:00', 'success', 'admin@admin.com'),
+(1453, 'Contraseña o usuario incorrectos', '2021-03-09 03:55:00', 'failure', 'test'),
+(1454, 'Usuario ingreso al sistema sin problemas', '2021-03-09 03:55:00', 'success', 'owner@owner.com');
 
 -- --------------------------------------------------------
 
@@ -2710,8 +2745,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `active`, `email`, `password`, `telephone`, `zipcode`, `city`) VALUES
 (1, 'admin', 'admin', '1', 'admin@admin.com', '{bcrypt}$2a$10$iW6qYvcNvLkVvpHHKipjOesInnL1aJ5qJBn2e7RcGNcAUKpZ745Ku', '12345678', '24094', 'Tuxtla Gutierrez'),
-(11, 'Joe unitario', 'Franklin', '0', 'prueba@prueba2.com', '{bcrypt}$2a$10$iaMU2Zn0qNRl8gTfQqmqwOvwE5FDf2XLzjZ.z3VvK/iRC2YM6mwpm', '65551023', '29049', 'Madison'),
-(3, 'admin4', 'admin4', '0', 'admin@admin4', '{bcrypt}$2a$10$QI3JWMDxvZu.VMJ5RzhYZOqwHs1fkt3YYu2E7N01S0qk6MA.AHdye', '123', '29010', 'tuxtla gutierrez'),
+(11, 'Joe unitario', 'Franklin', '0', 'prueba@prueba2.com', '{bcrypt}$2a$10$dq135L7xWdxsDe6kpMLMbetE6r.YMJ/B8R/MiU36vgZ8j3Q1PIide', '65551023', '29049', 'Madison'),
+(3, 'admin4', 'admin4', '0', 'admin@admin4', '{bcrypt}$2a$10$1P4nQ6Ukn2AroI.d8W8C3un8q5QZktRQeYdMVbg4fhRGs9q/pFH4S', '123', '29010', 'tuxtla gutierrez'),
 (2, 'Don owner', 'ownersito', '1', 'owner@owner.com', '{bcrypt}$2a$10$5UivHTZmvVm3CRFSYq3NH.0M7izKNjTsuwiNJjtQAa5LsrmwC0HrK', '123456', '29049', 'Tuxtlas'),
 (5, 'Prueba', 'Prueba', '1', 'prueba@prueba.com', '{bcrypt}$2a$10$AgHrOrJgniIaQ55pwwuqu.Nu.DW7fqJYnDZ/jcn3dPWEtf6lEocx.', '123456', '29049', 'Tuxtla'),
 (12, 'admin3', 'admin3', '1', 'admin@admin3', '{bcrypt}$2a$10$2DW3tbf4Gz65nI.26CBw1ewA0a1wT14ddR2A71vAq6TU./chvZ.ma', '123', '29010', 'tuxtla gutierrez'),
@@ -2747,7 +2782,7 @@ CREATE TABLE `venta` (
   `owner_id` int(11) NOT NULL,
   `metodopago` varchar(100) NOT NULL,
   `total` int(11) NOT NULL,
-  `fecha` varchar(100) NOT NULL
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2755,9 +2790,7 @@ CREATE TABLE `venta` (
 --
 
 INSERT INTO `venta` (`id`, `owner_id`, `metodopago`, `total`, `fecha`) VALUES
-(12, 9, 'PayPal', 208, 'Tue Mar 02 14:43:47 CST 2021'),
-(13, 9, 'Tarjeta', 168, 'Tue Mar 02 14:45:20 CST 2021'),
-(14, 9, 'Tarjeta', 180, 'Tue Mar 02 18:42:00 CST 2021');
+(17, 9, 'Tarjeta', 232, '2021-03-08');
 
 -- --------------------------------------------------------
 
@@ -2779,11 +2812,8 @@ CREATE TABLE `ventadetalle` (
 --
 
 INSERT INTO `ventadetalle` (`id`, `venta_id`, `product_id`, `cantidad`, `precio`, `subtotal`) VALUES
-(15, 12, 15, 1, 100, 100),
-(16, 12, 8, 1, 90, 90),
-(17, 12, 10, 2, 9, 18),
-(18, 13, 14, 3, 56, 168),
-(19, 14, 8, 2, 90, 180);
+(23, 17, 11, 1, 120, 120),
+(24, 17, 14, 2, 56, 112);
 
 -- --------------------------------------------------------
 
@@ -3132,7 +3162,11 @@ INSERT INTO `vets` (`id`, `first_name`, `last_name`, `Schedule`, `specialty_id`,
 (325, 'vet2', 'vet2', '2:40', 1234, '123'),
 (326, 'vet2', 'vet2', '2:40', 1234, '123'),
 (327, 'vet2', 'vet2', '2:40', 1234, '123'),
-(328, 'vet2', 'vet2', '2:40', 1234, '123');
+(328, 'vet2', 'vet2', '2:40', 1234, '123'),
+(329, 'vet2', 'vet2', '2:40', 1234, '123'),
+(330, 'vet2', 'vet2', '2:40', 1234, '123'),
+(331, 'vet2', 'vet2', '2:40', 1234, '123'),
+(332, 'vet2', 'vet2', '2:40', 1234, '123');
 
 -- --------------------------------------------------------
 
@@ -3488,7 +3522,11 @@ INSERT INTO `visits` (`id`, `visit_date`, `description`, `pet_id`) VALUES
 (312, '2021-03-02', 'ver al medico', 3),
 (313, '2021-03-02', 'ver al medico', 3),
 (314, '2021-03-02', 'ver al medico', 3),
-(315, '2021-03-02', 'ver al medico', 3);
+(315, '2021-03-02', 'ver al medico', 3),
+(316, '2021-03-08', 'ver al medico', 3),
+(317, '2021-03-08', 'ver al medico', 3),
+(318, '2021-03-08', 'ver al medico', 3),
+(319, '2021-03-08', 'ver al medico', 3);
 
 --
 -- Índices para tablas volcadas
@@ -3636,13 +3674,13 @@ ALTER TABLE `visits`
 -- AUTO_INCREMENT de la tabla `carritocompra`
 --
 ALTER TABLE `carritocompra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidades`
@@ -3654,7 +3692,7 @@ ALTER TABLE `especialidades`
 -- AUTO_INCREMENT de la tabla `medicamento`
 --
 ALTER TABLE `medicamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=325;
 
 --
 -- AUTO_INCREMENT de la tabla `owners`
@@ -3666,7 +3704,7 @@ ALTER TABLE `owners`
 -- AUTO_INCREMENT de la tabla `pets`
 --
 ALTER TABLE `pets`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=331;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=335;
 
 --
 -- AUTO_INCREMENT de la tabla `privilege`
@@ -3684,7 +3722,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `records`
 --
 ALTER TABLE `records`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1432;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1455;
 
 --
 -- AUTO_INCREMENT de la tabla `role`
@@ -3726,25 +3764,25 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `ventadetalle`
 --
 ALTER TABLE `ventadetalle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `vets`
 --
 ALTER TABLE `vets`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
 
 --
 -- AUTO_INCREMENT de la tabla `visits`
 --
 ALTER TABLE `visits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- Restricciones para tablas volcadas

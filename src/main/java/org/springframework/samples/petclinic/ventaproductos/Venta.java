@@ -5,6 +5,7 @@
  */
 package org.springframework.samples.petclinic.ventaproductos;
 
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +35,7 @@ public class Venta extends BaseEntity {
     private Double total;
 
     @Column(name = "fecha")
-    private String fecha;
+    private Date fecha;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venta")
     private Set<VentaDetalle> ventadetalle;
@@ -63,11 +64,11 @@ public class Venta extends BaseEntity {
         this.total = total;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

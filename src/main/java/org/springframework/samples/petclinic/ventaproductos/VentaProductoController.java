@@ -73,7 +73,7 @@ public class VentaProductoController {
         Owner owner = getCurrentOwner();
 
         venta.setOwner(owner);
-        venta.setFecha(fecha.toString());
+        venta.setFecha(fecha);
         ventaRepository.save(venta);
         
         addProductsVentaDetalle(owner, venta);
