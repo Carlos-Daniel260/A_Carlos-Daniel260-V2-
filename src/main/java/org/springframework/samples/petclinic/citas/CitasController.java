@@ -139,6 +139,7 @@ public class CitasController {
 
             System.out.println("BIEN");
             cita.setConfirmacion(0);
+            cita.setEspecialista("Indefinido");
             System.out.println("CITAAA"+cita);
             this.citas.save(cita);
             return "redirect:/owner/my_profile";
@@ -218,6 +219,7 @@ public class CitasController {
             Owner selectedOwer = cita.getOwner();
             String hour = cita.getHora();
             String date = cita.getFecha();
+            String especialista = cita.getEspecialista();
             
             System.out.println("Especialidad "+selectedEspecialidad);
             System.out.println("OWNER "+selectedOwer);
@@ -228,6 +230,8 @@ public class CitasController {
             citaAdmin.setHora(hour);
             citaAdmin.setEspecialidad(selectedEspecialidad);
             citaAdmin.setOwner(selectedOwer);
+            citaAdmin.setEspecialista(especialista);
+            
             //this.citas.save(cita);
             return "redirect:/admin/citas/pets";
         }
@@ -293,7 +297,7 @@ public class CitasController {
             String hora = citaAdmin.getHora();
             Owner ow = citaAdmin.getOwner();
             String especialidad = citaAdmin.getEspecialidad();
-            
+            String especialista = citaAdmin.getEspecialista();
             System.out.println("JAJA "+fecha);
             System.out.println(hora);
             System.out.println(ow);
@@ -304,6 +308,7 @@ public class CitasController {
             cita.setHora(hora);
             cita.setOwner(ow);
             cita.setConfirmacion(0);
+            cita.setEspecialista("Indefinido");
             cita.setId(0);
             
             System.out.println("CITAAA "+cita);

@@ -55,6 +55,9 @@ public class Citas extends BaseEntity{
     @Column(name = "confirmacion")
     private Integer confirmacion;
     
+    @Column(name = "especialista")
+    private String especialista;
+    
     @OneToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Owner owner;
@@ -107,6 +110,14 @@ public class Citas extends BaseEntity{
         this.confirmacion = confirmacion;
     }
     
+    public String getEspecialista(){
+        return this.especialista;
+    }
+    
+    public void setEspecialista(String especialista){
+        this.especialista = especialista;
+    }
+
     @Override
     public String toString() {
         return new ToStringCreator(this)
@@ -118,6 +129,7 @@ public class Citas extends BaseEntity{
                 .append("mascota",this.mascota)
                 .append("especialidad",this.especialidad)
                 .append("confirmacion",this.confirmacion)
+                .append("especialista",this.especialista)
                 
                 .toString();
     }

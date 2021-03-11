@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+    th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
+    <body>
+        <style>
+            th {
+                background-color: #29B6F6 !important;
+                color: white;
+            }
+
+            .btn-default, .btn-danger{
+                outline: none !important;
+                border: none;
+                border-radius: 20px;
+                color: white;
+                width: 200px;
+            }
+
+            .btn-default{
+                background-color: #29B6F6;
+            }
+
+
+        </style>
+        <br>
+        <br>
+        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Asignar especialista</h1></div>
+        <div style="display:flex; text-align: center;">
+        <div style="width:60%; margin:auto; text-align: center;">
+        <form th:action="@{/appointment/asignarEspecialista}" th:object="${appointment}" class="form-horizontal" method="post">
+        Especialista: 
+        <select th:field="*{especialista}">
+           <span th:each="vet : ${allVets}">
+                <option th:if="${appointment.especialidad} == ${vet.specialty}" th:value="${vet.lastName}" th:text="${vet.lastName}"/>
+           </span>
+        </select>
+        <br>
+        <p>
+        <select th:field="*{id}" style="visibility:hidden">
+            <option th:value="${appointment.id}" th:text="${appointment.id}"></option>
+        </select>
+        <br>
+        <button  th:text="Aceptar"  class="btn btn-default" type="submit"></button>
+        </p>
+        </form>
+        </div>
+        </div>
+</body>
+</html>

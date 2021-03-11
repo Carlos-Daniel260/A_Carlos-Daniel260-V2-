@@ -37,7 +37,14 @@ inner join specialties on appointment.id_specialtie=specialties.id;
     @Transactional
     @Query(value = "update citas u set u.confirmacion = ? where u.id = ?", 
     nativeQuery = true)
-    int updateUserSetStatusForNameNative(String confirmacion, Integer id);
+    int updateUserSetStatusForNameNative(String confirmacion,int id);
+    
+    
+    @Modifying
+    @Transactional
+    @Query(value = "update citas u set u.especialista = ? where u.id = ?", 
+    nativeQuery = true)
+    int updateUserSetEspecialista(String especialista,int id);
     
     void delete(Appointment appoinment);
 }
