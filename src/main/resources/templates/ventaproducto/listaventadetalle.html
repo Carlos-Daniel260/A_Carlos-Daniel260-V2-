@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout_owner :: layout (~{::body},'home')}">
+    <body>
+
+        <div style="display:flex"><h1 style="margin:auto; margin-top: 20px; margin-bottom:20px;">Productos comprados</h1></div>    
+        <div class="container" style="margin-bottom: 20px">
+            <div class="row text-left">
+                <a th:href="@{/owner/compras}" class="btn btn-primary" >Ver otras compras</a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="detalle : ${allVentaDetalles}">
+                                <td th:text="${detalle.product.name}"/>
+                                <td th:text="${detalle.cantidad}"/>
+                                <td>                              
+                                    <p style="float: left;">$</p><p th:text="${detalle.precio}"><p/>                           
+                                </td>  
+                                <td>                              
+                                    <p style="float: left;">$</p><p th:text="${detalle.subtotal}"><p/>                           
+                                </td>                               
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>                                 
+            </div>       
+    </body>
+</html>

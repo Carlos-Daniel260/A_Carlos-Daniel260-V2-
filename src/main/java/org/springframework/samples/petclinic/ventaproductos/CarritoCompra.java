@@ -27,12 +27,10 @@ import org.springframework.samples.petclinic.product.Product;
 @Table(name = "carritocompra")
 public class CarritoCompra extends BaseEntity{
   
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     private Owner owner;
     
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     private Product product;
     
     @Column(name = "cantidad")

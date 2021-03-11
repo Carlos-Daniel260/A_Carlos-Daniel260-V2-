@@ -11,25 +11,38 @@ and open the template in the editor.
 
         <div class="container" style="margin-bottom: 20px">
             <div class="row text-right">
-                <a th:href="@{agregados}" class="btn btn-primary" >Ver productos agregados</a>
+                <a th:href="@{compras}" class="btn btn-success" >Ver las compras realizadas</a>
             </div>
         </div>
-        
+        <div class="container" style="margin-bottom: 20px">
+            <div class="row text-right">
+                <a th:href="@{agregados}" class="btn btn-primary" >Ver productos agregados </a>
+            </div>
+        </div>
+
         <div class="container">         
             <div class="row">
                 <div th:each="product : ${allProducts}">  
-                    <div class="col-xs-18 col-sm-4 col-md-3">
-                        <div class="thumbnail">
-                            <img th:src="@{${product.photo}}">
-                            <div class="caption">
-                                <h4 th:field="*{name}" class="inline" th:text="${product.name}"><span class="glyphicon glyphicon-th-large"></span>Thumbnail label</h4>
-                                <p th:field="*{price}" style="float: left;">$</p><p th:text=" ${product.price}"/>                                    
-                                <p th:text="${product.description}">Lorem ipsum dolor sit amet, lat. Consece odio similique suscipit</p>
-                                <a th:href="@{seleccionarProducto/{productId}(productId=${product.id})}" 
-                                   class="btn btn-info" >Agregar</a>
+                    <form th:action="@{seleccionarProducto/producto}" th:object="${carrito}" method="post">
+                        <div class="col-xs-18 col-sm-4 col-md-3">
+                            <div class="thumbnail">
+                                <img th:src="@{${product.photo}}">
+                                <div class="caption">
+                                    <h4 class="inline" th:text="${product.name}"><span class="glyphicon glyphicon-th-large"></span>Thumbnail label</h4>
+                                    <p style="float: left;">$</p><p th:text=" ${product.price}"/>                                    
+                                    <p th:text="${product.description}">Lorem ipsum dolor sit amet, lat. Consece odio similique suscipit</p>
+                                    <div style="margin-bottom:  4px; margin-top: 4px; width: 77px;">
+                                        <input type="number" th:min="1" th:max="${product.existence}" 
+                                               th:field="*{cantidad}" class="form-control"/>
+                                    </div>                                  
+                                    <button class="btn btn-info" >Agregar</button>
+                                    <select th:field="*{product.id}" style="visibility: hidden; display: inline;">
+                                        <option th:value="${product.id}">Tarjeta</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
