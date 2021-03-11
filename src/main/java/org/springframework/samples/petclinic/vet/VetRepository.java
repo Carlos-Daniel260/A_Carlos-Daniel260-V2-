@@ -62,5 +62,6 @@ public interface VetRepository extends Repository<Vet, Integer> {
     @Transactional(readOnly = true)
     List<Specialty> findSpecialtys();  
 
+    
 
 }

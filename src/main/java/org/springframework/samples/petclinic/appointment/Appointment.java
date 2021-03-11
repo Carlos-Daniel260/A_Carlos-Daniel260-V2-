@@ -44,6 +44,9 @@ public class Appointment extends BaseEntity {
     @Column(name = "confirmacion")
     @NotEmpty
     private Integer confirmacion;
+    
+    @Column(name = "especialista")
+    private String especialista;
 
     public Integer getOwner_id() {
         return owner_id;
@@ -91,6 +94,13 @@ public class Appointment extends BaseEntity {
 
     public void setConfirmacion(Integer confirmacion) {
         this.confirmacion = confirmacion;
+    }
+    public String getEspecialista() {
+        return especialista;
+    }
+
+    public void setEspecialista(String especialista) {
+        this.especialista = especialista;
     }
 
 }
