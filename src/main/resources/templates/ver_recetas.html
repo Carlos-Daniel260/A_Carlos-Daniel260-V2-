@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
+
+<body>
+
+    <style>
+        th {
+            background-color: #29B6F6 !important;
+            color: white;
+        }
+
+        .btn-default,
+        .btn-danger {
+            outline: none !important;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            width: 200px;
+        }
+
+        .btn-default {
+            background-color: #29B6F6;
+        }
+    </style>
+
+    <div style="display:flex">
+        <span style="width:100%; text-align: center; margin-top: 20px" th:object="${specialtie}">
+            <h1 th:text="Recetas"></h1>
+            <h4 th:text="Recetas" />
+        </span>
+    </div>
+    <a style="margin-left:10%; margin-top:20px;" th:text="#{regresar}" th:href="@{/appointments/report}"
+        class="btn btn-default"></a><br>
+    <div style="width: 100%;display: flex; margin-top:20px;">
+        <table style="margin:auto; width:80%" id="vets" class="table table-striped">
+            <thead>
+                <tr>
+                    <th th:text="NumeroDeReceta" style="width: 150px;"></th>
+                    <th th:text="Medicamento" style="width: 150px;"></th>
+                    <th th:text="Dosis" style="width: 150px;"></th>
+                    <th th:text="Frecuencia" style="width: 150px;"></th>
+                    <th th:text="FechaFrecuencia" style="width: 150px;"></th>
+                    <th th:text="Cita" style="width: 150px;"></th>
+                    <th th:text="CitaFecha" style="width: 150px;"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="receta : ${recetas}">
+                    <td th:text="${receta.id}" />
+                    <td th:text="${receta.medicamento}" />
+                    <td th:text="${receta.dosis}" />
+                    <td th:text="${receta.frecuencia}" />
+                    <td th:text="${receta.fecha}" />
+                    <td th:text="${receta.cita.id}" />
+                    <td th:text="${receta.cita.fecha}" />
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

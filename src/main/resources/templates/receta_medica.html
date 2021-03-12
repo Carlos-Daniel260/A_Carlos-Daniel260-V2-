@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'update_delete')}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <style>
+    button,
+    .btn-default {
+      width: 100%;
+      height: 30px;
+      outline: none !important;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      background-color: #29B6F6 !important;
+    }
+  </style>
+
+  <div style="display:flex">
+    <h1 style="width:100%; text-align: center; margin-top: 20px">Añadir Receta</h1>
+  </div>
+  <div class="alert alert-danger" role="alert" th:if="${exitsError}">
+    Existen valores que causan conflictos, revisalos
+  </div>
+  <form th:object="${receta}" th:action="@{save}" method="post">
+
+    <table class="table table-striped">
+      
+      <tr>
+        <th>Medicamento</th>
+        <td>
+          <input id="medicamento" type="text" th:field="*{medicamento}"
+            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
+
+        </td>
+      </tr>
+      <tr>
+        <th>Dosis</th>
+        <td>
+          <input id="dosis" type="text" th:field="*{dosis}"
+            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
+        </td>
+      </tr>
+      <tr>
+        <th>Frecuencia</th>
+        <td>
+          <input id="frecuencia" type="text" th:field="*{frecuencia}"
+            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
+        </td>
+      </tr>
+      <tr>
+        <th>Fecha</th>
+        <td>
+          <input id="fecha" type="date" th:field="*{fecha}"
+            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
+        </td>
+      </tr>
+      <!-- <tr>
+        <th>Cita</th>
+        <td>
+          <input id="cita" type="text"
+            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;"
+            th:field="*{cita.id}">
+        </td>
+      </tr> -->
+
+      Citas
+                        <select th:field="*{cita.id}">
+                            <span th:each="cita : ${citas}">
+                                <option  th:value="${cita.id}" th:text="${cita.id}"/>
+                            </span>
+                        </select>
+
+
+    </table>
+    <input class="col-xs-13 col-sm-5 col-md-5 col-lg-5 btn btn-default" type="submit" value="Guardar cambios">
+  </form>
+</body>
+
+</html>
