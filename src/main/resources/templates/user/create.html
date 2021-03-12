@@ -3,24 +3,21 @@
     th:replace="~{fragments/layout :: layout (~{::body},'user_create')}">
     <body>
         <style>
-            button, .btn-default{
-                width: 100%;
-                height: 30px;
+            button, .btn-primary{
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
                 color: white;
-                background-color: #29B6F6 !important;
             }
         </style>
         
-        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px">Crear usuario</h1></div>
+        <div style="display:flex"><h1 class="h1" style="width:100%; text-align: center; margin-top: 20px">Crear usuario</h1></div>
         <div class="col-xs-13 col-sm-3 col-md-3 col-lg-3"></div>
         <div class="col-xs-13 col-sm-5 col-md-5 col-lg-5">
         <form th:object="${user}" class="form-horizontal" id="add-owner-form" method="post">
             <div class="form-group has-feedback">
                 <div class="form-group">
-                    <h3 class="col-sm-2 control-label">Email</h3>
+                    <h4 class="col-sm-2 control-label">Email</h4>
                     <div class="col-sm-10">
                         <input class="form-control" type="text" th:field="*{email}" />
                     </div>      
@@ -43,7 +40,7 @@
                     th:replace="~{fragments/inputField :: input (Ciudad, 'city', 'text')}" />
                 
                 <div class="form-group">
-                    <h3 class="col-sm-2 control-label">Zipcode</h3>
+                    <h4 class="col-sm-2 control-label">Zipcode</h4>
                     <div class="col-sm-10">
                         <input class="form-control" type="text" th:field="*{zipcode}" />
                     </div> 
@@ -58,10 +55,10 @@
                     th:replace="~{fragments/inputField :: input (#{tf}, 'telephone', 'text')}" />
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-2 col-sm-10 text-center">
                     <button
                         th:with="text=${user['new']} ? #{au} : #{uu}"
-                        class="btn" type="submit" th:text="${text}"></button>
+                        class="btn btn-primary" type="submit" th:text="${text}"></button>
                 </div>
             </div>
         </form>

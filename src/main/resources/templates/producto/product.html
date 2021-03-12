@@ -11,19 +11,18 @@
         <style>
             
             th {
-                background-color:  #29B6F6 !important;
+                background-color:  #286090 !important;
                 color: white;
             } 
             
             .btn{
-                width: 300px;
+               
                 height: 30px;
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
                 margin-bottom:10px;
                 color: white;
-                background-color: #29B6F6 !important;
             }
            
            
@@ -31,7 +30,7 @@
         
         <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px" th:text="#{Productos}"></h1></div>
        
-        <a style="margin-left:10%; margin-top:20px;" th:text="#{agregarProducto}" class="btn" th:href="@{/product/create-product}"></a>
+        
 
         <div style="width: 100%;display: flex">
         <table style="margin:auto; width:80%" id="vets" class="table table-striped">
@@ -51,8 +50,8 @@
                     <td><p style="float: left;">$</p><p th:text=" ${product.price}"/></td>
                     <td th:text="${product.existence}"/>
                     <td> <img th:src="@{${product.photo}}" style ="width: 100px; height: 100px;"> </td>
-                    <td> <a th:text="#{editar}" th:href="@{/product/edit/__${product.id}__}" class="btn btn-default"></a> </td>
-                    <td> <a th:text="#{Eliminar}" th:href="@{/product/delete/__${product.id}__}" class="btn btn-default"></a> </td>
+                    <td>  <a th:href="@{/product/edit/__${product.id}__}" class="btn btn-default"> <span   class="glyphicon glyphicon-pencil"></span> </a> </td>
+                    <td> <a  th:href="@{/product/delete/__${product.id}__}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"/></a> </td>
                 </tr>
             </tbody>
         </table>

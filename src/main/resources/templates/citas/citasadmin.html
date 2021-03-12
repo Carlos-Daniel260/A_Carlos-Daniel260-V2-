@@ -5,49 +5,72 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
-    <body>
-        <!--<script type="text/javascript" src="jquery-3.3.1.min.js"></script>-->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+
+    <body class="container">
+
         <style>
             .btn{
-                outline: none !important;
-                border: none;
                 border-radius: 20px;
-                background-color: #212121;
                 color: white;
-                width: 100%;
+            }
+            form{
+                padding-left:10px;
+                padding-right: 10px;
+            }
+            @media only screen and (max-width: 760px) {
+                img{
+                    width: 0%;
+                }
             }
         </style>
-        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Agregar nueva cita</h1></div>
-        <div style="display:flex;">
-            <div style="width:60%; margin:auto;">
-     
-                <form th:object="${citas}" class="form-horizontal" id="add-owner-form" method="post">
+        <!--<script type="text/javascript" src="jquery-3.3.1.min.js"></script>-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+        <div class="row text-center">
+            <h1 class="h1">Agregar nueva cita</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8  text-center">
+                <div class="col-lg-4"></div>
+                <form th:object="${citas}" class="form-horizontal col-lg-8" id="add-owner-form" method="post">
                     <div class="form-group has-feedback">
+                        <input th:replace="~{fragments/inputField :: input ('Fecha', 'fecha', 'date')}" />
 
-                        <input
-                            th:replace="~{fragments/inputField :: input ('Fecha', 'fecha', 'date')}" />
+                        <input th:replace="~{fragments/inputField :: input ('Hora', 'hora', 'time')}" />
+                        <div>
+                            Especialidad:
+                            <select th:field="*{especialidad}">
+                                <span th:each="especialidad : ${especialidades}">
+                                    <option  th:value="${especialidad.id}" th:text="${especialidad.name}"/>
+                                </span>
+                            </select>
+                        </div>
 
-                        <input
-                            th:replace="~{fragments/inputField :: input ('Hora', 'hora', 'time')}" />
-                        
-                        Especialidad
-                        <select th:field="*{especialidad}">
-                            <span th:each="especialidad : ${especialidades}">
-                                <option  th:value="${especialidad.id}" th:text="${especialidad.name}"/>
-                            </span>
-                        </select>
-                        
                         <br>
-                        
-                        Owner
-                        <select th:field="*{owner}">
-                            <span th:each="owners : ${idowner}">
-                                <option  th:value="${owners.id}" th:text="${owners.firstName}"/>
-                            </span>
-                        </select>
-                        
+                        Owner:
+                            <select th:field="*{owner}">
+                                <span th:each="owners : ${idowner}">
+                                    <option  th:value="${owners.id}" th:text="${owners.firstName}"/>
+                                </span>
+                            </select>
+                        <!--<div class="">
+                            Owner:
+                            <select th:field="*{owner}">
+                                <span th:each="owners : ${idowner}">
+                                    <option  th:value="${owners.id}" th:text="${owners.firstName}"/>
+                                </span>
+                            </select>
+
+                        </div>
                         <br>
+                        <div th:field="*{owner}">
+                            <select th:field="*{mascota}" style="display:none">
+                                <span th:each="mascota : ${mascotas}">
+                                    <option  th:value="${mascota.id}" th:text="${mascota.name}"/>
+                                </span>
+                            </select>
+                        </div>-->
                         
                         
                         <select th:field="*{mascota}" style="display:none">
@@ -61,15 +84,16 @@ and open the template in the editor.
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
-                            <button id="btn"
-                                    th:with="text=Cita"
-                                    class="btn" type="submit" th:text="Siguiente">Add Cita</button>
+                        <div class="">
+                            <button id="btn"th:with="text=Cita" class="btn btn-primary" type="submit" th:text="Siguiente">Add Cita</button>
                         </div>
                     </div>
-                    
+
                 </form>   
-            </div>         
+            </div>
+            <div class="col-md-2 text-center">
+                <img  src="../../static/resources/images/veterinario.png" th:src="@{/resources/images/veterinario.png}" height="400px" alt="">
+            </div>
         </div>
     </body>
 </html>

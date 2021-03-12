@@ -6,40 +6,52 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout_owner :: layout (~{::body},'home')}">
     <body>
-        
+
         <style>
             .btn{
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
-                background-color: #29B6F6;
                 color: white;
-                width: 100%;
+                width: 50%;
+            }
+            .etiqueta{
+                text-align: right;
+            }
+            @media only screen and (max-width: 760px) {
+                .etiqueta{
+                    text-align: left;
+                }
             }
         </style>
-        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Agregar nueva cita</h1></div>
+        <div style="display:flex">
+            <h1 class="h1" style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">
+                Agregar nueva cita</h1>
+        </div>
         <div style="display:flex;">
             <div style="width:60%; margin:auto;">
                 <form th:object="${citas}" class="form-horizontal" id="add-owner-form" method="post">
                     <div class="form-group has-feedback">
 
-                        <input
-                            th:replace="~{fragments/inputField :: input ('Fecha', 'fecha', 'date')}" />
+                        <input th:replace="~{fragments/inputField :: input ('Fecha', 'fecha', 'date')}" />
 
-                        <input
-                            th:replace="~{fragments/inputField :: input ('Hora', 'hora', 'time')}" />
-                        
-                        Especialidad
-                        <select th:field="*{especialidad}">
-                            <span th:each="especialidad : ${especialidades}">
-                                <option  th:value="${especialidad.id}" th:text="${especialidad.name}"/>
-                            </span>
-                        </select>
-                        
+                        <input th:replace="~{fragments/inputField :: input ('Hora', 'hora', 'time')}" />
+
+                        <div class="form-group row">
+                            <h4 class="col-md-3 etiqueta">Especialidad</h4> 
+                            <div class="col-md-3">
+                                <select style=" padding: 5px; border-radius: 5px;"  th:field="*{especialidad}">
+                                    <span th:each="especialidad : ${especialidades}">
+                                        <option  th:value="${especialidad.id}" th:text="${especialidad.name}"/>
+                                    </span>
+                                </select>
+                            </div>
+                        </div>
                         <br>
-                        
-                        Mascota
-                        <select th:field="*{mascota}">
+                        <div>
+                            <h4 class="col-md-3 etiqueta">Mascota</h4>
+                            <div>
+                                <select style=" padding: 5px; border-radius: 5px;" th:field="*{mascota}">
                             <span th:each="mascota : ${idowner.pets}">
                                 <option  th:value="${mascota.id}" th:text="${mascota.name}"/>
                             </span>
@@ -51,10 +63,10 @@ and open the template in the editor.
                     </div>
 
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
+                        <div class="col-sm-offset-3 col-sm-7 text-center">
                             <button id="btn"
                                     th:with="text=Cita"
-                                    class="btn" type="submit" th:text="${text}">Add Cita</button>
+                                    class="btn btn-primary" type="submit" >Agregar Cita</button>
                         </div>
                     </div>
                 </form>

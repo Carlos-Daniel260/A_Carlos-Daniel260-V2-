@@ -3,49 +3,77 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     th:replace="~{fragments/layout :: layout (~{::body},'rep')}">
 
-<body>
-
+<body class="container">
     <style>
         th {
-            background-color: #29B6F6 !important;
+            background-color: #286090 !important;
             color: white;
         }
 
-        .btn-default,
-        .btn-danger {
+        .btn,
+        .btn-primary {
             outline: none !important;
             border: none;
             border-radius: 20px;
             color: white;
-            width: 200px;
         }
 
-        .btn-default {
-            background-color: #29B6F6;
+        .selection {
+            border-color: #286090;
         }
     </style>
 
-    <div style="display:flex">
-        <span style="width:100%; text-align: center; margin-top: 20px" th:object="${specialtie}">
-            <h1 th:text="#{especialidad}"></h1>
-            <h4 th:text="${specialtie}" />
+    .btn-default {
+    background-color: #29B6F6;
+    }
+    </style>
+
+    <div class="row text-center">
+        <span th:object="${specialtie}">
+            <a class="h1" th:text="#{especialidad}"></a>
         </span>
     </div>
-    <a style="margin-left:10%; margin-top:20px;" th:text="#{regresar}" th:href="@{/appointments/report}"
-        class="btn btn-default"></a><br>
-    <div style="width: 100%;display: flex; margin-top:20px;">
+
+    <div class="row">
+        <div class="col-lg-5 col-sm-4">
+        </div>
+        <div class="col-lg-4 col-sm-6 selection">
+            <h4 />
+            <a th:text="'Ver por: ' + ${specialtie}" href="#" class="dropdown-toggle h4" data-toggle="dropdown"
+                role="button" aria-haspopup="true" aria-expanded="false">Ver por:</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a th:text="#{verTodo}" th:href="@{/appointment/report/-2}" class="btn" />
+                </li>
+                <li>
+                    <a th:text="#{confirmado}" th:href="@{/appointment/report/-1}" class="btn" />
+                </li>
+                <li>
+                    <a th:text="#{noConfirmado}" th:href="@{/appointment/report/0}" class="btn" />
+                </li>
+                <li th:each="specialtie : ${allSpecialties}">
+                    <a th:text="${specialtie.nombre}" th:href="@{/appointment/report/__${specialtie.id}__}"
+                        class="btn"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 text-left">
+
+        </div>
+    </div>
+    <div class="row">
+
         <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
                 <tr>
-                    <th th:text="#{numeroCita}" style="width: 200px;"></th>
-                    <th th:text="#{fecha}" style="width: 250px;"></th>
-                    <th th:text="#{hora}" style="width: 150px;"></th>
-                    <th th:text="#{mascota}" style="width: 200px;"></th>
-                    <th th:text="#{confirmacion}" style="width: 150px;"></th>
-                    <th th:text="#{especialidad}" style="width: 150px;"></th>
-                    <th th:text="Especialista" style="width: 150px;">
-                        </ <th th:text="Confirmar" style="width: 150px;">
-                    </th>
+                    <th th:text="#{numeroCita}"></th>
+                    <th th:text="#{fecha}"></th>
+                    <th th:text="#{hora}"></th>
+                    <th th:text="#{mascota}"></th>
+                    <th th:text="#{confirmacion}"></th>
+                    <th th:text="#{especialidad}"></th>
+                    <th th:text="Especialista"></th>
+                    <th th:text="Confirmar"></th>
                     <th th:text="AddReceta" style="width: 150px;"></th>
                     <th th:text="VerRecetas" style="width: 150px;"></th>
                 </tr>
@@ -56,18 +84,14 @@
                     <td th:text="${appointments.id}" />
                     <td th:text="${appointments.fecha}" />
                     <td th:text="${appointments.hora}" />
-                    <td th:text="${appointments.mascota}" />
-                    <td th:if="${appointments.confirmacion == 0}" style="width: 150px; color: red;"
-                        th:text="#{noConfirmado}" />
-                    <td th:unless="${appointments.confirmacion == 0}" style="width: 150px; color: green;"
-                        th:text="#{confirmado}" />
-                    <td th:text="${appointments.especialidad}" />
+                    <td th:each="pet : ${allPets}" th:if="${pet.id == appointments.mascota}"
+                        th:text="' '+ ${pet.name}" />
+                    <td th:if="${appointments.confirmacion == 0}" style="color: red;" th:text="#{noConfirmado}" />
+                    <td th:unless="${appointments.confirmacion == 0}" style="color: green;" th:text="#{confirmado}" />
+                    <td th:each="specialtie : ${allSpecialties}" th:if="${specialtie.id == appointments.especialidad}"
+                        th:text="${specialtie.nombre}" />
                     <td th:text="${appointments.especialista}" />
-                    <td>
-                        <a th:text="Confirmar" th:href="@{/appointments/especialista/__${appointments.id}__}"
-                            class="btn btn-default"></a>
-                    </td>
-                    <td> <a th:text="Confirmar" th:href="@{/appointments/update/__${appointments.id}__}"
+                    <td> <a th:text="Confirmar" th:href="@{/appointments/especialista/__${appointments.id}__}"
                             class="btn btn-default"></a> </td>
                     <td> <a th:text="AddReceta" th:href="@{/citas/receta/__${appointments.id}__}"
                             class="btn btn-default"></a> </td>
@@ -76,6 +100,8 @@
             </tbody>
         </table>
     </div>
+
+
 </body>
 
 </html>

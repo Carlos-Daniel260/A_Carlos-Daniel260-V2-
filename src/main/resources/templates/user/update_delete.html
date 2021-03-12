@@ -13,118 +13,107 @@ and open the template in the editor.
     <body>
         
                 <style>
-            button, .btn-default{
-                width: 100%;
-                height: 30px;
+            button, .btn-primary{
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
                 color: white;
-                background-color: #29B6F6 !important;
+                width: auto;
+                padding: 10px 15px;
             }
+            input{
+                width: 90%;
+                height: 40px;
+                border-radius: 5px;
+                border-color: #B3E5FC;
+                border-style: groove;
+            }
+            
             
         </style>
         
-        <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px">Actualizar usuario</h1></div>
+        <div style="display:flex">
+            <h1 style="width:100%; text-align: center; margin-top: 20px" class="h1">
+                Actualizar usuario</h1>
+        </div>
         <div class="alert alert-danger" role="alert" th:if="${exitsError}">
            Existen valores que causan conflictos, revisalos
         </div>
-        <div class="col-xs-13 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-13 col-sm-3 col-md-3 col-lg-3">
+        </div>
         <div class="col-xs-13 col-sm-5 col-md-5 col-lg-6">
-            <form th:object="${user}"  th:action="@{/user/update/__${user.id}__}"  id="form" method="post">
-                <table class="table table-striped" th:object="${user}">
-                  <tr>
-                    <th>Email</th>
-                    <td>
-                        <input
-                            id="email"
+            <form th:object="${user}"  class="form-horizontal" th:action="@{/user/update/__${user.id}__}"  id="form" method="post">
+                <div class="form-group has-feedback">
+                    <h4 class="h4 ">Email: </h4>
+                    <input class="" id="email"
                             type="text" 
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             th:value="${user.email}"
                             th:field="*{email}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>FirstName</th>
-                    <td>
-                        <input 
-                            id="first_name"
+                    </div>
+                     <div class="form-group has-feedback">
+                    <h4 class="h4 ">Nombre : </h4>
+                   
+                    <input id="first_name"
                             type="text" 
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             th:value="${user.firstName}" 
                             th:field="*{firstName}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>LastName</th>
-                    <td>
-                        <input 
+                    </div>
+                        
+                        <div class="form-group has-feedback">
+                    <h4 class="h4 ">Apellidos : </h4>
+                   <input 
                             id="last_name"
                             type="text" 
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             th:value="${user.lastName}" 
                             th:field="*{lastName}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Password</th>
-                    <td>
-                        <input 
+                    </div>
+                        
+                    <div class="form-group has-feedback">
+                    <h4 class="h4 ">Contraseña: </h4>
+                   <input 
                             type="password" 
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;"
                             th:value="${user.password}"
                             th:field="*{password}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Active</th>
-                    <td>
-                        <input
+                    </div>
+                 <div class="form-group has-feedback">
+                    <h4 class="h4 ">Activo: </h4>
+                  <input
                             id="active"
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             type="text" 
                             th:value="${user.active} == 1? 'Si': 'No'"  
                             th:field="*{active}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Ciudad</th>
-                    <td>
-                        <input
+                    </div>
+                <div class="form-group has-feedback">
+                    <h4 class="h4 ">Ciudad: </h4>
+                  <input
                             id="active"
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             type="text" 
                             th:value="${user.city}"  
                             th:field="*{city}">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Zipcode</th>
-                    <td>
-                        <input
+                    </div>
+                <div class="form-group has-feedback">
+                    <h4 class="h4 ">Zipcode: </h4>
+                  <input
                             id="zipcode"
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
                             type="text" 
                             th:value="${user.zipcode}"  
-                            th:field="*{zipcode}">            
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Telephone</th>
-                    <td>
-                        <input
-                            id="telephone"
-                            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;" 
+                            th:field="*{zipcode}">  
+                    </div>
+                <div class="form-group has-feedback">
+                    <h4 class="h4 ">Telefono:  </h4>
+                  <input id="telephone"
                             type="text" 
                             th:value="${user.telephone} == ''? 'Sin numero telefononico': ${user.telephone}"  
-                            th:field="*{telephone}">                 
-                    </td>
-                    </tr>
-                </table>
+                            th:field="*{telephone}">   
+                    </div>
+               
+                <br>
+                <div class="row text-center">
+                    <input class="btn btn-primary" type="submit" value="Guardar cambios" >
+                </div>
+                <br>
                 <br>
                 
-                
-                <input class="col-xs-13 col-sm-5 col-md-5 col-lg-5 btn btn-default" type="submit" value="Guardar cambios" >
             </form>
         </div>
     </body>

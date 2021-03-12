@@ -17,7 +17,7 @@
     </style>
     <div style="display:flex; width: 100%; height: 80vh;" >
         <div class="col-xs-10 col-sm-8 col-md-8 col-lg-5" style="margin:auto;">
-            <h2><th:block th:text="#{np}" th:if="${pet['new']}">New </th:block></h2>
+            <h1 class="h1"><th:block th:text="#{np}" th:if="${pet['new']}">New </th:block></h1>
 
             <form th:object="${pet}" class="form-horizontal" method="post">
               <input type="hidden" name="id" th:value="*{id}" />

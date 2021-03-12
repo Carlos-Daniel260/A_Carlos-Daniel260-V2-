@@ -4,19 +4,17 @@
 <body>
     
     <style>
-        button{
-            width: 100%;
-            height: 30px;
-            outline: none !important;
-            border: none;
-            border-radius: 20px;
-            color: white;
-            background-color: #29B6F6 !important;
-        }
+        button, .btn-primary{
+                outline: none !important;
+                border: none;
+                border-radius: 20px;
+                color: white;
+            }
     </style>  
-    <div style="display:flex; width: 100%; height: 80vh;" >
+    <div class="text-center" style="display:flex; width: 100%; height: 80vh" >
         <div class="col-xs-10 col-sm-8 col-md-8 col-lg-5" style="margin:auto;">
-            <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px" th:text="#{medinf}"></h1></div>
+            <div style="display:flex"><h1 class="h1" style="width:100%; text-align: center; margin-top: 20px; margin-bottom: 20px;" th:text="#{medinf}"></h1></div>
+            <div>
                 <form th:object="${medicamento}" class="form-horizontal" id="add-medicamento-form" method="post">
                     <div class="form-group has-feedback">
                         <input th:replace="~{fragments/inputField :: input ('Nombre', 'nombre', 'text')}" />
@@ -25,10 +23,12 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button th:with="text=${medicamento['new']} ? 'Agregar medicamento' : 'Actualizar medicamento'" class="" type="submit" th:text="${text}"></button>
+                            <button th:with="text=${medicamento['new']} ? 'Agregar medicamento' : 'Actualizar medicamento'" class="btn btn-primary" type="submit" th:text="${text}"></button>
                         </div>
                     </div>
-                </form>           
+                </form>     
+            </div>
+                      
         </div>
        
     </div>

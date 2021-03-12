@@ -31,7 +31,7 @@
   <form th:object="${receta}" th:action="@{save}" method="post">
 
     <table class="table table-striped">
-      
+
       <tr>
         <th>Medicamento</th>
         <td>
@@ -71,11 +71,11 @@
       </tr> -->
 
       Citas
-                        <select th:field="*{cita.id}">
-                            <span th:each="cita : ${citas}">
-                                <option  th:value="${cita.id}" th:text="${cita.id}"/>
-                            </span>
-                        </select>
+      <select th:field="*{cita.id}">
+        <span th:each="cita : ${citas1}">
+          <option th:value="${cita.id}" th:text="${cita.id}" />
+        </span>
+      </select>
 
 
     </table>

@@ -12,9 +12,7 @@ and open the template in the editor.
                 outline: none !important;
                 border: none;
                 border-radius: 20px;
-                background-color: #212121;
                 color: white;
-                width: 100%;
             }
         </style>
         <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 10px; margin-bottom: 40px">Seleccione Mascota</h1></div>
@@ -34,13 +32,15 @@ and open the template in the editor.
                         
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button id="btn"
-                                    th:with="text=Cita"
-                                    class="btn" type="submit" th:text="${text}">Add Cita</button>
+                            <button id="btn" th:with="text=Cita"  class="btn bg-primary" type="submit" th:text="${text}">
+                                Add Cita</button>
                         </div>
                     </div>
                     
                 </form>   
+                <img src="../../static/resources/images/cat.png" alt=""/>
+                <img  src="../../static/resources/images/cat.png" th:src="@{/resources/images/cat.png}" height="200px" alt="">
+          
             </div>         
         </div>
     </body>

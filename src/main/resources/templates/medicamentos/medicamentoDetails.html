@@ -6,11 +6,11 @@
   <body>
     <style>
         th {
-            background-color: #4CCEAD !important;
+            background-color: #286090 !important;
             color: white;
         }
         
-        .btn-default, .btn-danger{
+        .btn-info, .btn-danger{
             outline: none !important;
             border: none;
             border-radius: 20px;
@@ -18,15 +18,11 @@
             width: 200px;
         }
         
-        .btn-default{
-            background-color: #212121;
-        }
-        
         
     </style>
-    <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px" th:text="#{medinf}"></h1></div>
+    <div style="display:flex"><h1 class="h1" style="width:100%; text-align: center; margin-top: 20px; margin-bottom: 10px" th:text="#{medinf}"></h1></div>
     <div style="width: 100%;display: flex">
-        <table style="margin:auto; width:80%" class="table table-striped" th:object="${medicamento}">
+        <table style="margin:auto; width:auto" class="table table-striped" th:object="${medicamento}">
             <tr>
                 <th style="width:40%" th:text="#{fn}">Name</th>
                 <td><b th:text="*{nombre}"></b></td>
@@ -43,7 +39,7 @@
     </div>
     <div style="width: 100%; display:flex;">
         <div style="margin: auto; display:flex; margin-top: 20px;">
-            <a style="margin-right:20px;" th:text="#{em}" th:href="@{{id}/edit(id=${medicamento.id})}" class="btn btn-default">Edit Medicamento</a>
+            <a style="margin-right:20px;" th:text="#{em}" th:href="@{{id}/edit(id=${medicamento.id})}" class="btn btn-info">Edit Medicamento</a>
             <a th:text="'Eliminar'" th:href="@{{id}/delete(id=${medicamento.id})}" class="btn btn-danger">Edit Medicamento</a>    
         </div>    
     </div>  

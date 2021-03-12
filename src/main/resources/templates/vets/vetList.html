@@ -5,7 +5,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
   th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
 
-<body>
+    <body class="container">
         <style>
             .button{
                 height: 30px;
@@ -17,14 +17,19 @@
                 background-color: #29B6F6 !important;
             }
             
-            th {
-                background-color: #29B6F6!important;
+             th {
+                background-color:  #286090 !important;
                 color: white;
             }
         </style>
-  <h2>Veterinarians</h2>
-
-  <table id="vets" class="table table-striped">
+        <div class="row text-center">
+            <h1 class="h1">Veterinarios</h1>
+        </div>
+  
+  
+  <div style="width: 100%;display: flex">
+      
+  <table id="vets" class="table table-striped" style="margin:auto; width:70%" >
     <thead>
       <tr>
         <th th:text="#{Name}">Name</th>
@@ -46,8 +51,9 @@
       </tr>
     </tbody>
   </table><br>
-<center><a th:text="#{CV}" class="btn btn-default" th:href="@{/vets/new}">Create</a></center>
   
+  </div>
+
   
 </body>
 

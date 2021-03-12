@@ -11,225 +11,362 @@ and open the template in the editor.
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    
-<head>
+    <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/pets_icon.png}">
 
-    <title>PetClinic :: a Spring Framework demonstration</title>
+        <title>PetCare</title>
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-    <link rel="stylesheet" th:href="@{/resources/css/petclinic.css}"/>
 
-</head>
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>  
-    
+
+        </head>
+
         <style>
-            button{
-                width: 50%;
-                height: 30px;
-                outline: none !important;
-                border: none;
-                color: white;
-                border-radius: 20px;
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
             }
-            
-            .container-img{
-                width: 100wh;
+
+            body{
+                font-family: 'Poppins', sans-serif;
+                overflow: hidden;
+            }
+
+           
+            .container{
+                width: 100vw;
                 height: 100vh;
-                background-color: red;
-                align-content: center;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap :7rem;
+                padding: 0 2rem;
+            }
+
+            .img{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            .login-content{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: center;
+            }
+
+            .img img{
+                width: 500px;
+            }
+
+            form{
+                width: 360px;
+            }
+
+
+            .login-content h1{
+                font-family: fantasy;
+                font-stretch: expanded;
+                margin: 15px 0;
+                color: whitesmoke;
+                text-transform: uppercase;
+                font-size: 2.9rem;
+            }
+
+            .login-content .input-div{
+                position: relative;
+                display: grid;
+                grid-template-columns: 7% 93%;
+                margin: 25px 0;
+                padding: 5px 0;
+                border-bottom: 2px solid #d9d9d9;
             }
             
-            .img{
+            .input-div > div > input {
+                position: absolute;
+                left: 0;
+                top: 0;
                 width: 100%;
                 height: 100%;
-            }
-            
-            .title-login{
-                width:100%; 
-                text-align: center; 
-                margin-top: 20px;
-                color:#29B6F6;
-                font-size: 40px;
-                text-shadow: 2px 2px #E1F5FE; 
-            }
-            
-            .MyContainer{
-                display:flex; 
-                position: absolute; 
-                top:0px; 
-                bottom: 0px; 
-                right:0px; 
-                left: 0px;
-            }
-            
-            .style_inputs{
-                margin:auto; 
-                margin-left: 0px; 
-                border:0px; 
-                text-align: center; 
-                width: 100%;
                 border: none;
-                color:white;
-                border-radius: 20px;
-                background-color: rgba(0, 0, 0, 0.2);
-                border-color: #29B6F6;
-                border-style:solid;
+                outline: none;
+                background: none;
+                padding: 0.5rem 0.7rem;
+                font-size: 1.2rem;
+                color: #000;
+            }
+
+            .login-content .input-div.one{
+                margin-top: 0;
+            }
+
+            .i{
+                color: #d9d9d9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .i i{
+                transition: .3s;
+            }
+
+            .input-div > div{
+                position: relative;
+                height: 45px;
+            }
+
+            .input-div > div > h4{
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #fff;
+                font-size: 18px;
+                transition: .3s;
+            }
+
+            .input-div:before, .input-div:after{
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                width: 0%;
+                height: 2px;
+                background-color: #286090;
+                transition: .4s;
             }
             
-            input::placeholder {
-                color: white;
+           
+            .input-div:before{
+                right: 50%;
+            }
+
+            .input-div:after{
+                left: 50%;
+            }
+
+            .input-div.focus:before, .input-div.focus:after{
+                width: 50%;
+            }
+
+            .input-div.focus > div > h4{
+                top: -5px;
+                font-size: 15px;
+            }
+
+            .input-div.focus > .i > i{
+                color: #38d39f;
+            }
+
+            
+
+            .input-div.pass{
+                margin-bottom: 4px;
+            }
+
+            a{
+                display: block;
+                text-align: right;
+                text-decoration: none;
+                color: #999;
+                font-size: 0.9rem;
+                transition: .3s;
+            }
+
+             a:hover{
+                color: #286090;
             }
             
-            .style-alert{
-                text-align: center; 
-                margin-top: 20px;
-                color:white;
+            style-alert{
+                color: #286090;
+                font-size: 0.9rem;
+                transition: .3s;
+            }
+
+            .btn{
+                display: block;
+                width: 100%;
+                height: 50px;
+                border-radius: 25px;
+                outline: none;
+                border: none;
+                background-image: linear-gradient(to right, #286090, activecaption, #286090);
+                background-size: 200%;
+                font-size: 1.2rem;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+                text-transform: uppercase;
+                margin: 1rem 0;
+                cursor: pointer;
+                transition: .5s;
+            }
+            .btn:hover{
+                background-position: right;
             }
             
-            .color-new-owner{
-                color:white;
-                text-align: center; 
-                margin-top: 20px;              
+            .fondo{ 
+                position: fixed;
+                right: 0;
+                bottom: 1;
+                height: 100%;
+                z-index: -1;
+            }
+
+
+            @media screen and (max-width: 1050px){
+                .container{
+                    grid-gap: 5rem;
+                }
+            }
+
+            @media screen and (max-width: 1000px){
+                form{
+                    width: 290px;
+                }
+
+                .login-content h2{
+                    font-size: 2.4rem;
+                    margin: 8px 0;
+                }
+
+                .img img{
+                    width: 400px;
+                }
+            }
+
+            @media screen and (max-width: 900px){
+                .container{
+                    grid-template-columns: 1fr;
+                }
+
+                .img{
+                    display: none;
+                }
+
+                a{
+                    margin-top: 50px;
+                    padding-left: -80px;
+                }
+
+                .login-content{
+                    justify-content: center;
+                }
             }
             
-            .color-new-owner:hover{
-                font-weight:bold;
-                color:#B3E5FC;
+             @media only screen and (max-width: 760px) {
+                .fondo{ 
+                bottom: 1;
+                left: 0;
+                }
             }
-            
-            
         </style>
-    
-        
-        <div class="container-img">
-            <img class="img" th:src="@{/resources/images/background.jpg}"/>
-        </div>
-        <div class="MyContainer">
-                <div style="margin: auto;">  
-                    <div style="display:flex"><h1 class="title-login" >Petclinic</h1></div>
-                    <form th:action="@{/login}" method="post">
-                        <div style="display:flex;">
-                            <div style="margin: auto;display: flex; width: 350px">                        
-                                <input class="style_inputs" type="text" id="username" name="username" required="required" placeholder="Email"/>
+        <body>
+            <div class="container">
+                <div class="img">
+                    <img  th:src="@{/resources/images/undraw_friends.svg}"/>
+                </div>
+
+                <div class="login-content">
+                    <img class="fondo" th:src="@{/resources/images/blob1.svg}"/>
+
+                    <form th:action="@{/login}" method="post">                         
+                        <h1>PetCare</h1>
+
+                        <div class="input-div one">
+                            <div class="i"> 
+                                <i class=""></i>
+                            </div>
+                            <div class="div">
+                                <h4>Correo</h4>
+                                <input class="input" type="email" id="username" name="username"/>
                             </div>
                         </div>
-                        <div style="margin-top: 20px">
-                            <div style="margin: auto;display: flex; width: 350px">                        
-                                <input class="style_inputs" type="password" id="password" name="password" required="required" placeholder="Contraseña"/>
-                            </div>        
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">
-                                <button
-                                    class="btn" style="background-color:#29B6F6; border-radius: 20px;" type="submit">Acceder</button>
+
+                        <div class="input-div pass">
+                            <div class="i"> 
+                                <i class=""></i>
                             </div>
-                        </div>       
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <div th:if="${param.error}" class="col-sm-offset-2 col-sm-8 style-alert">    
-                                        Contraseña o usuario invalido.                            
-                                        <div th:text="${param.error}"></div>
+                            <div class="div"> 
+                                <h4>Contraseña</h4>   
+                                <input class="input" type="password" id="password" name="password"  />
+                            </div>
+                        </div> 
+
+                        <button class="btn btn-primary" type="submit">Acceder</button>
+
+                        <div class="">
+                            <div class="">                            
+                                <div class="">                                
+                                    <div th:if="${param.error}" class="col-sm-offset-2 col-sm-8 style-alert">                                                                       
+                                        Contraseña o usuario invalido.                                                                            
+                                        <div th:text="${param.error}">
+                                        </div>
                                     </div>
+
                                     <div th:if="${param.logout}" class="col-sm-offset-2 col-sm-8 style-alert" > 
                                         Te has deslogeado exitosamente.
                                     </div>
-                                    <div th:if="${param.disabled}" class="col-sm-offset-2 col-sm-8 style-alert" > 
-                                        Usuario no habilitado
+
+                                    <div th:if="${param.disabled}" class="col-sm-offset-2 col-sm-8 style-alert" >        
+                                        Usuario no habilitado.                                                                    
                                     </div>
+
                                     <div th:if="${param.loggedin}" class="col-sm-offset-2 col-sm-8 style-alert"> 
                                         Ya estas logeado
                                     </div>
+
                                     <div th:if="${param.confirmation}" class="col-sm-offset-2 col-sm-8 style-alert" > 
                                         Te has deslogeado porque hiciste cambios importantes
-                                    </div>                                                       
+                                    </div>
+
                                 </div>
+
                             </div>
+
                         </div>
-                    </form> 
-                    <a class="col-sm-offset-2 col-sm-8 color-new-owner" th:href="@{/owner_signup}">Soy propietario, deseo registrarme</a>
+                    </form>
+                </div>
+                <div >  
+                    <a class="" th:href="@{/owner_signup}">Soy propietario, deseo registrarme</a>
                 </div>
             </div>
+            <script>
+                const inputs = document.querySelectorAll(".input");
 
-        
-        
-        
-        
-        
-    <!--<div class="container-fluid">
-        <div class="container xd-container">            
-            <br/>
-            <br/>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <img src="../static/resources/images/spring-pivotal-logo.png" th:src="@{/resources/images/spring-pivotal-logo.png}"
-                             alt="Sponsored by Pivotal"/></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div style="display:flex">
-        <div style="margin: auto">            
-            <form th:action="@{/login}" method="post">
-                <div style="display:flex;">
-                    <div style="margin: auto;display: flex; width: 350px">                        
-                        <input style="margin:auto; margin-left: 0px; border:0px; border-radius: 3px; text-align: center; width: 100%;" type="text" id="username" name="username" required="required" placeholder="Email"/>
-                    </div>
-                </div>
-                <div style="margin-top: 20px">
-                    <div style="margin: auto;display: flex; width: 350px">                        
-                        <input style="margin:auto; margin-left: 0px;border:0px; border-radius: 3px; text-align: center; width: 100%;" type="password" id="password" name="password" required="required" placeholder="Contraseña"/>
-                    </div>        
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">
-                        <button
-                            class="btn btn-default" type="submit">Acceder</button>
-                    </div>
-                </div>       
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div th:if="${param.error}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;">    
-                                Contraseña o usuario invalido.                            
-                                <div th:text="${param.error}"></div>
-                            </div>
-                            <div th:if="${param.logout}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
-                                Te has deslogeado exitosamente.
-                            </div>
-                            <div th:if="${param.disabled}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
-                                Usuario no habilitado
-                            </div>
-                            <div th:if="${param.loggedin}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
-                                Ya estas logeado
-                            </div>
-                            <div th:if="${param.confirmation}" class="col-sm-offset-2 col-sm-8" style="text-align: center; margin-top: 20px;"> 
-                                Te has deslogeado porque hiciste cambios importantes
-                            </div>                                                       
-                        </div>
-                    </div>
-                </div>
-            </form> 
-            <a class="col-sm-offset-2 col-sm-8" th:href="@{/owner_signup}" style="text-align: center; margin-top: 20px;"><button class="btn btn-danger">Soy propietario, deseo registrarme</button></a>
-        </div>
-    </div>-->
-</body>
-</html>
+                function addcl(){
+                    let parent = this.parentNode.parentNode;
+                    parent.classList.add("focus");
+                    console.log(parent)
+                }
+
+                function remcl(){
+                    let parent = this.parentNode.parentNode;
+                    if(this.value == ""){
+                        parent.classList.remove("focus");
+                         console.log(parent)
+                    }
+                }
+
+
+                inputs.forEach(input => {
+                    input.addEventListener("focus", addcl);
+                    input.addEventListener("blur", remcl);
+                    console.log(input)
+                });
+            </script>
+
+
+        </body>
+        </html>

@@ -5,30 +5,40 @@
   <body>
         <style>
             th {
-                background-color:  #29B6F6 !important;
+                background-color:  #286090 !important;
                 color: white;
-            } 
+            }
+            
+            a {
+                color: #101010;
+                text-decoration: none;
+            }
+            
         </style>
-      <div style="display:flex"><h1 style="width:100%; text-align: center; margin-top: 20px"th:text="#{o}">Owners</h1></div>
+      <div style="display:flex">
+          <h1 class="h1" style="width:100%; text-align: center; margin-top: 20px"th:text="#{o}">Ownerss</h1>
+      </div>
 
      <div style="width: 100%;display: flex">
         <table style="margin:auto; width:80%" id="vets" class="table table-striped">
             <thead>
             <tr>
                 <th th:text="#{fn}" style="width: 150px;">Name</th>
-                <th th:text="#{ad}" style="width: 200px;">Address</th>
-                <th th:text="#{cd}" style="width: 200px;">City</th>
-                <th th:text="#{tf}" style="width: 100px">Telephone</th>
+                <th th:text="#{ad}" style="width: 200px;">City</th>
+                <th th:text="#{tf}" style="width: 200px;">Telephone</th>
+                <th th:text="#{p}" style="width: 100px">Pets</th>
             </tr>
             </thead>
             <tbody>
               <tr th:each="owner : ${selections}">
-                  <td>
-                      <a th:href="@{/admin/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
-                  </td>
-                  <td th:text="${owner.city}"/>
-                  <td th:text="${owner.telephone}"/>
-                  <td><span th:each="pet : ${owner.pets}" th:text="${pet.name} "/></td>
+                <td>
+                    <a th:href="@{/admin/owners/__${owner.id}__}" th:text="${owner.firstName + ' ' + owner.lastName}"/></a>
+                </td>
+                <td th:text="${owner.city}"/>
+                <td th:text="${owner.telephone}"/>
+                <td style="width: 30%">
+                    <a th:each="pet : ${owner.pets}" th:text="${pet.name + ', '} "/>
+                </td>
               </tr>
             </tbody>
         </table>

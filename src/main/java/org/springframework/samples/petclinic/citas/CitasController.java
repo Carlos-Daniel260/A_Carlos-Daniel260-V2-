@@ -339,7 +339,7 @@ public class CitasController {
         Collection<Citas> citas1 = citas.All();
         modelAndView = new ModelAndView("receta_medica");
         modelAndView.addObject("cita", citaAux);
-        modelAndView.addObject("citas", citas1);
+        modelAndView.addObject("citas1", citas1);
         modelAndView.addObject("receta", new Receta());
         modelAndView.addObject("exitsError", false);
         return modelAndView;
