@@ -43,7 +43,8 @@
                     <th th:text="#{mascota}" style="width: 200px;"></th>
                     <th th:text="#{confirmacion}" style="width: 150px;"></th>
                     <th th:text="Confirmar" style="width: 150px;"></th>
-                    <th th:text="Receta" style="width: 150px;"></th>
+                    <th th:text="AddReceta" style="width: 150px;"></th>
+                    <th th:text="VerRecetas" style="width: 150px;"></th>
                 </tr>
             </thead>
 
@@ -59,8 +60,10 @@
                         th:text="#{confirmado}" />
                     <td> <a th:text="Confirmar" th:href="@{/appointments/update/__${appointments.id}__}"
                             class="btn btn-default"></a> </td>
-                    <td> <a th:text="Receta" th:href="@{/citas/receta/__${appointments.id}__}"
+                    <td> <a th:text="AddReceta" th:href="@{/citas/receta/__${appointments.id}__}"
                             class="btn btn-default"></a> </td>
+                    <td> <a th:text="VerRecetas" th:href="@{/recetas/ver}"
+                                class="btn btn-default"></a> </td>
                 </tr>
             </tbody>
         </table>

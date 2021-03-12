@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -14,47 +19,35 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Positive;
+import org.springframework.samples.petclinic.citas.Citas;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "recetas")
 public class Receta extends BaseEntity {
 
     @Column(name = "medicamento")
-    @NotEmpty
     private String medicamento;
     @Column(name = "dosis")
-    @NotEmpty
     private String dosis;
     @Column(name = "frecuencia")
-    @NotEmpty
-    private String frecuencia;
+    private int frecuencia;
     @Column(name = "fecha")
-    @NotEmpty
     private String fecha;
-    @Column(name = "numeroreceta")
-    @NotEmpty
-    private String numeroreceta;
-    @Column(name = "cita")
-    private int cita;
+
+    @ManyToOne
+    @JoinColumn(name = "cita_id")
+    private Citas cita;
 
     public Receta() {
     }
 
-    public Receta(String medicamento, String dosis, String frecuencia, String fecha, String numeroReceta, int cita) {
+    public Receta(String medicamento, String dosis, int frecuencia, String fecha, Citas cita) {
         this.medicamento = medicamento;
         this.dosis = dosis;
         this.frecuencia = frecuencia;
         this.fecha = fecha;
-        this.numeroreceta = numeroReceta;
         this.cita = cita;
-    }
-
-    public String getMedicamento() {
-        return medicamento;
-    }
-
-    public void setMedicamento(String medicamento) {
-        this.medicamento = medicamento;
     }
 
     public String getDosis() {
@@ -65,11 +58,11 @@ public class Receta extends BaseEntity {
         this.dosis = dosis;
     }
 
-    public String getFrecuencia() {
+    public int getFrecuencia() {
         return frecuencia;
     }
 
-    public void setFrecuencia(String frecuencia) {
+    public void setFrecuencia(int frecuencia) {
         this.frecuencia = frecuencia;
     }
 
@@ -81,19 +74,20 @@ public class Receta extends BaseEntity {
         this.fecha = fecha;
     }
 
-    public String getNumeroreceta() {
-        return numeroreceta;
-    }
-
-    public void setNumeroreceta(String numeroReceta) {
-        this.numeroreceta = numeroReceta;
-    }
-
-    public int getCita() {
+    public Citas getCita() {
         return cita;
     }
 
-    public void setCita(int cita) {
+    public void setCita(Citas cita) {
         this.cita = cita;
     }
+
+    public String getMedicamento() {
+        return medicamento;
+    }
+
+    public void setMedicamento(String medicamento) {
+        this.medicamento = medicamento;
+    }
+
 }

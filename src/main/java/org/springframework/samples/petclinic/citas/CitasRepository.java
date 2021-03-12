@@ -5,6 +5,8 @@
  */
 package org.springframework.samples.petclinic.citas;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @author legad
  */
 public interface CitasRepository extends Repository<Citas, Long> {
+
+    @Query("SELECT citas FROM Citas citas")
+    @Transactional(readOnly = true)
+    Collection<Citas> All();
 
     @Query("SELECT cita FROM Citas cita WHERE cita.id =:id")
     @Transactional(readOnly = true)

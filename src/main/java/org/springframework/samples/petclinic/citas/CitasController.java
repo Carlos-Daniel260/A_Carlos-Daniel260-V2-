@@ -331,8 +331,10 @@ public class CitasController {
     public ModelAndView getCita(@PathVariable("id") int id) {
 
         Citas citaAux = citas.findById(id);
+        Collection<Citas> citas1 = citas.All();
         modelAndView = new ModelAndView("receta_medica");
         modelAndView.addObject("cita", citaAux);
+        modelAndView.addObject("citas", citas1);
         modelAndView.addObject("receta", new Receta());
         modelAndView.addObject("exitsError", false);
         return modelAndView;

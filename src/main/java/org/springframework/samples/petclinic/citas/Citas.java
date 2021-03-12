@@ -20,12 +20,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.query.criteria.internal.path.SetAttributeJoin;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.owner.Owner;
+import org.springframework.samples.petclinic.recetas.Receta;
+import java.util.*;
+import java.util.List;
 
 /**
  *
@@ -35,30 +39,47 @@ import org.springframework.samples.petclinic.owner.Owner;
 @Entity
 @Table(name = "citas")
 
-public class Citas extends BaseEntity{
+public class Citas extends BaseEntity {
     @Column(name = "fecha")
     @NotEmpty
     private String fecha;
-    
+
+    // private List<Receta> recetas;
+    @OneToMany(mappedBy = "cita")
+    private Set<Receta> recetas;;
+
     @Column(name = "hora")
     @NotEmpty
     private String hora;
-    
+
     @Column(name = "mascota")
     @NotEmpty
     private String mascota;
-    
+
     @Column(name = "especialidad")
     @NotEmpty
     private String especialidad;
-    
+
     @Column(name = "confirmacion")
     private Integer confirmacion;
-    
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Owner owner;
-    
+
+    public Citas() {
+    }
+
+    public Citas(@NotEmpty String fecha, Set<Receta> recetas, @NotEmpty String hora, @NotEmpty String mascota,
+            @NotEmpty String especialidad, Integer confirmacion, Owner owner) {
+        this.fecha = fecha;
+        this.recetas = recetas;
+        this.hora = hora;
+        this.mascota = mascota;
+        this.especialidad = especialidad;
+        this.confirmacion = confirmacion;
+        this.owner = owner;
+    }
+
     public Owner getOwner() {
         return owner;
     }
@@ -66,59 +87,64 @@ public class Citas extends BaseEntity{
     public void setOwner(Owner owner) {
         this.owner = owner;
     }
-    
-    public String getFecha(){
+
+    public String getFecha() {
         return this.fecha;
     }
-    
-    public void setFecha(String fecha){
+
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
-    public String getHora(){
+
+    public String getHora() {
         return this.hora;
     }
-    
-    public void setHora(String hora){
+
+    public void setHora(String hora) {
         this.hora = hora;
     }
-    
-    public String getMascota(){
+
+    public String getMascota() {
         return this.mascota;
     }
-    
-    public void setMascota(String mascota){
+
+    public void setMascota(String mascota) {
         this.mascota = mascota;
     }
-    
-    public String getEspecialidad(){
+
+    public String getEspecialidad() {
         return this.especialidad;
     }
-    
-    public void setEspecialidad(String especialidad){
+
+    public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-    
-    public Integer getConfirmacion(){
+
+    public Integer getConfirmacion() {
         return this.confirmacion;
     }
-    
-    public void setConfirmacion(Integer confirmacion){
+
+    public void setConfirmacion(Integer confirmacion) {
         this.confirmacion = confirmacion;
     }
-    
+
     @Override
     public String toString() {
-        return new ToStringCreator(this)
-                .append("id", this.getId())
-                //.append("owner_id",this.owner.getId())
-                .append("new", this.isNew())
-                .append("fecha", this.fecha)
-                .append("hora", this.hora)
-                .append("mascota",this.mascota)
-                .append("especialidad",this.especialidad)
-                .append("confirmacion",this.confirmacion)
-                
+        return new ToStringCreator(this).append("id", this.getId())
+                // .append("owner_id",this.owner.getId())
+                .append("new", this.isNew()).append("fecha", this.fecha).append("hora", this.hora)
+                .append("mascota", this.mascota).append("especialidad", this.especialidad)
+                .append("confirmacion", this.confirmacion)
+
                 .toString();
     }
+
+    public Set<Receta> getRecetas() {
+        return recetas;
+    }
+
+    public void setRecetas(Set<Receta> recetas) {
+        this.recetas = recetas;
+    }
+
 }

@@ -31,22 +31,7 @@
   <form th:object="${receta}" th:action="@{save}" method="post">
 
     <table class="table table-striped">
-      <tr>
-        <th>Id</th>
-        <td>
-          <input id="id" type="text" th:field="*{id}"
-            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
-
-        </td>
-      </tr>
-      <tr>
-        <th>Numero de receta</th>
-        <td>
-          <input id="medicamento" type="text" th:field="*{numeroreceta}"
-            style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
-
-        </td>
-      </tr>
+      
       <tr>
         <th>Medicamento</th>
         <td>
@@ -76,14 +61,21 @@
             style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;">
         </td>
       </tr>
-      <tr>
+      <!-- <tr>
         <th>Cita</th>
         <td>
           <input id="cita" type="text"
             style="border: 1px; border-color: black; border-style:solid; outline:0; background-color: transparent; width:100%; padding-left: 10px;"
-            th:value="${cita.id}" th:field="*{cita}">
+            th:field="*{cita.id}">
         </td>
-      </tr>
+      </tr> -->
+
+      Citas
+                        <select th:field="*{cita.id}">
+                            <span th:each="cita : ${citas}">
+                                <option  th:value="${cita.id}" th:text="${cita.id}"/>
+                            </span>
+                        </select>
 
 
     </table>
