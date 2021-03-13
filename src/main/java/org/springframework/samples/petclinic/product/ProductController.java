@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.product;
 
 import java.util.Collection;
+import java.util.Iterator;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,10 @@ public class ProductController {
     @GetMapping("/products")
     public String initFindForm(Map<String, Object> model) {
         Collection<Product> allProducts = this.productRepository.getAllProducts();
+        System.out.println(" ");
+        for(Product p: allProducts){
+            System.out.println(p.getPhoto());
+        }
         model.put("allProducts", allProducts);
         return VIEW_PRODUCTO_HOME;
     }
