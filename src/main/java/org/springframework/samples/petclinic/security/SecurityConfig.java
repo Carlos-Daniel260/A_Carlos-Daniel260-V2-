@@ -19,8 +19,8 @@ public class SecurityConfig {
     public static class RestConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/**").cors().and().csrf().disable() // we don't need CSRF because our token is
-                                                                 // invulnerable
+            http.antMatcher("/API/**").cors().and().csrf().disable() // we don't need CSRF because our token is
+                    // invulnerable
                     .authorizeRequests().antMatchers(HttpMethod.POST, "user").permitAll().anyRequest().authenticated()
                     .and().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     // this disables session creation on Spring Security
