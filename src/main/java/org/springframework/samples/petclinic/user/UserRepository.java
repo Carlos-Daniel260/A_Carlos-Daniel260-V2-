@@ -13,33 +13,39 @@ import org.springframework.samples.petclinic.user.User;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  *
  * @author AugustoRuCle
  */
-public interface UserRepository extends Repository<User, Long>{
+public interface UserRepository extends Repository<User, Long> {
 
     @Query("SELECT user FROM User user WHERE user.id = :id")
     @Transactional(readOnly = true)
     User findById(@Param("id") Integer id);
-    
+
     @Query("SELECT user FROM User user WHERE user.email = :email")
     @Transactional(readOnly = true)
     User findByEmail(@Param("email") String email);
-    
+
+    @Query("SELECT user FROM User user WHERE user.email = :username AND user.password = :pwd")
+    @Transactional(readOnly = true)
+    User findUser(@Param("username") String username, @Param("pwd") String pwd);
+
     @Query("SELECT user FROM User user ")
     @Transactional(readOnly = true)
     ArrayList<User> All();
-    
-//    @Query("SELECT user FROM Owner user")
-//    @Transactional(readOnly = true)
-//    ArrayList<User> Owners();
-    
-    /** 
+
+    // @Query("SELECT user FROM Owner user")
+    // @Transactional(readOnly = true)
+    // ArrayList<User> Owners();
+
+    /**
      * Save an {@link User} to the data store, either inserting or updating it.
+     * 
      * @param user the {@link Owner} to save
-    */
+     */
     void save(User user);
-   
+
+    // User findUser(String username);
+
 }

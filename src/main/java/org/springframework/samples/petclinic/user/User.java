@@ -33,9 +33,9 @@ import org.springframework.samples.petclinic.owner.Owner;
 
 public class User extends Person {
 
-    @Column(name = "email", unique = true)    
+    @Column(name = "email", unique = true)
     @NotEmpty
-    @Email    
+    @Email
     private String email;
 
     @Column(name = "password")
@@ -59,20 +59,15 @@ public class User extends Person {
     @Column(name = "city")
     @NotEmpty
     private String city;
-    
-    /////////////////kevin
+
+    ///////////////// kevin
     @OneToOne
     @PrimaryKeyJoinColumn
     private Owner owner;
     ///////////////
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
     public String getEmail() {
@@ -102,12 +97,12 @@ public class User extends Person {
     public String getActive() {
         return this.active;
     }
-    
+
     public boolean isEnabled() {
-        if(this.active.compareTo("1") == 0){
+        if (this.active.compareTo("1") == 0) {
             return true;
         }
-        return false;        
+        return false;
     }
 
     public void setActive(String active) {
@@ -130,20 +125,20 @@ public class User extends Person {
         this.city = city;
     }
 
-//    @Override
-//    public String toString() {
-//        return new ToStringCreator(this)
-//                .append("id", this.getId()).append("new", this.isNew())
-//                .append("lastName", this.getLastName())
-//                .append("firstName", this.getFirstName())
-//                .append("email", this.getEmail())
-//                .append("active", this.getActive())
-//                .append("password", this.getPassword())
-//                .append("zipcode", this.getZipcode())
-//                .append("telephone", this.getTelephone())
-//                .append("city", this.getCity())
-//                .toString();
-//    }
+    // @Override
+    // public String toString() {
+    // return new ToStringCreator(this)
+    // .append("id", this.getId()).append("new", this.isNew())
+    // .append("lastName", this.getLastName())
+    // .append("firstName", this.getFirstName())
+    // .append("email", this.getEmail())
+    // .append("active", this.getActive())
+    // .append("password", this.getPassword())
+    // .append("zipcode", this.getZipcode())
+    // .append("telephone", this.getTelephone())
+    // .append("city", this.getCity())
+    // .toString();
+    // }
 
     public Collection<Role> getRoles() {
         return roles;
@@ -152,16 +147,14 @@ public class User extends Person {
     public void setRoles(final Collection<Role> roles) {
         this.roles = roles;
     }
-    
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("User [id=").append(this.getId()).append(", firstName=").append(this.getFirstName()).append(", lastName=").append(this.getLastName()).
-                append(", email=").append(email).append(", password=").append(password).append(", enabled=").append("true").append(", secret=").
-                append(", roles=").append(roles).
-                append(", city=").append(city).
-                append(", zipcode=").append(zipcode)
-                .append("]");
+        builder.append("User [id=").append(this.getId()).append(", firstName=").append(this.getFirstName())
+                .append(", lastName=").append(this.getLastName()).append(", email=").append(email).append(", password=")
+                .append(password).append(", enabled=").append("true").append(", secret=").append(", roles=")
+                .append(roles).append(", city=").append(city).append(", zipcode=").append(zipcode).append("]");
         return builder.toString();
     }
 
