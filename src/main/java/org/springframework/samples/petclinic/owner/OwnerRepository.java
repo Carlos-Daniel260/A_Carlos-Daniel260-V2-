@@ -53,7 +53,7 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
     @Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
     @Transactional(readOnly = true)
     Owner findById(@Param("id") Integer id);
-    
+
     /**
      * Retrieve an {@link Owner} from the data store by id.
      * @param id the id to search for
@@ -62,15 +62,18 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
     @Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.user.id =:id")
     @Transactional(readOnly = true)
     Owner findByUserId(@Param("id") Integer id);
-    
+
     /**
      * Save an {@link Owner} to the data store, either inserting or updating it.
      * @param owner the {@link Owner} to save
      */
     void save(Owner owner);
-       
+
     @Query("SELECT owner FROM Owner owner ")
     @Transactional(readOnly = true)
     ArrayList<Owner> All();
-    
+
+    @Query("SELECT owner FROM Owner owner WHERE owner.user.id =:id")
+    @Transactional(readOnly = true)
+    Owner findOwnerByUserId(@Param("id") Integer id);
 }

@@ -29,19 +29,11 @@ public class UserControllerLogin {
     @PostMapping("/user")
     public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 
-        User userTest = new User();
-        userTest.setEmail(username);
-        userTest.setPassword(pwd);
-        User _user = this.users.findUser(username, pwd);
-
-        if (_user != null) {
-            String token = getJWTToken(username);
-            UserDTO user = new UserDTO();
-            user.setUser(username);
-            user.setToken(token);
-            return user;
-        } else
-            return null;
+        String token = getJWTToken(username);
+        UserDTO user = new UserDTO();
+        user.setUser(username);
+        user.setToken(token);
+        return user;
     }
 
     private String getJWTToken(String username) {

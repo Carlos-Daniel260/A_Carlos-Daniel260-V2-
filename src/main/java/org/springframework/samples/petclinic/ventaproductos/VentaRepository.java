@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 public interface VentaRepository extends Repository<Venta, Integer> {
 
     void save(Venta venta);
+    void save(Compra compra);
 
     @Query("SELECT venta FROM Venta venta WHERE venta.owner=:owner")
     @Transactional(readOnly = true)
     Collection<Venta> ventasOwner(@Param("owner") Owner owner);
-    
+
     @Query("SELECT venta FROM Venta venta WHERE venta.id =:id")
     @Transactional(readOnly = true)
     Venta findById(@Param("id") Integer id);
+
 }
