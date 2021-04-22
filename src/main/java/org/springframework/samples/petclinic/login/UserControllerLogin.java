@@ -33,10 +33,10 @@ public class UserControllerLogin {
         userTest.setEmail(username);
         userTest.setPassword(pwd);
         User _user = this.users.findUser(username, pwd);
-
         if (_user != null) {
             String token = getJWTToken(username);
             UserDTO user = new UserDTO();
+            user.setId(_user.getId());
             user.setUser(username);
             user.setToken(token);
             return user;

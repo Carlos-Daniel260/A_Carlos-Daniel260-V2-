@@ -1,11 +1,20 @@
 package org.springframework.samples.petclinic.login;
 
 public class UserDTO {
-
+    
+    private int id;
     private String user;
     private String pwd;
     private String token;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getUser() {
         return user;
     }

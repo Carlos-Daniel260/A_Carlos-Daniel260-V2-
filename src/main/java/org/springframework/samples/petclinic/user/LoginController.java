@@ -35,7 +35,7 @@ public class LoginController {
         this.users = clinicService;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login2")
     public ModelAndView Login(Map<String, Object> model) {
         User user = new User();
         ModelAndView modelAndView = new ModelAndView("user/login");
