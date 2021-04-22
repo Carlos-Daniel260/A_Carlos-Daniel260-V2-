@@ -41,11 +41,11 @@ class CompraDetalle {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setTotal(Double total) {
+    public void setPrecio(Double total) {
         this.precio = total;
     }
 
