@@ -17,6 +17,7 @@ public class SecurityConfig {
     @Order(1)
     @Configuration
     public static class RestConfiguration extends WebSecurityConfigurerAdapter {
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/API/**").cors().and().csrf().disable() // we don't need CSRF because our token is
@@ -32,12 +33,12 @@ public class SecurityConfig {
     @Order(2)
     @Configuration
     public static class WebConfiguration extends WebSecurityConfigurerAdapter {
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.exceptionHandling().accessDeniedPage("/403");
 
             http
-
                     .formLogin().and().authorizeRequests().antMatchers("/owners/**").authenticated()
                     .antMatchers("/user").permitAll();
 
@@ -46,10 +47,8 @@ public class SecurityConfig {
         @Override
         public void configure(WebSecurity web) throws Exception {
             web.ignoring()
-
                     .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/favicon.ico", "/**/*.html", "/**/*.css",
                             "/**/*.js"
-
                     ).antMatchers(HttpMethod.POST, "/user", "/owners/**");
             ;
         }
